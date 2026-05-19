@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+  <title>Бионика • Интерактивный мир живой инженерии</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0a0f0c;
+      color: #e8e0d0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .main-container {
+      max-width: 1300px;
+      width: 100%;
+      background: #111915;
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid #2a3520;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #2a3520;
+      padding-bottom: 1.5rem;
+    }
+
+    .title-section h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #d4a853, #c9973a, #b8860b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .title-section h1 i {
+      background: none;
+      color: #d4a853;
+      font-size: 3rem;
+      filter: drop-shadow(0 0 10px #b8860b);
+    }
+
+    .subtitle {
+      color: #c0b090;
+      font-size: 1.25rem;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .date-badge {
+      background: #1e2a15;
+      padding: 0.5rem 1.4rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      color: #d4a853;
+      border: 1px solid #3a4a20;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 2rem 0;
+      border-bottom: 1px solid #2a3520;
+      padding-bottom: 1rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid #2a3520;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #a09070;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: 0.4px;
+    }
+
+    .tab-btn i {
+      font-size: 1.2rem;
+      color: #b8860b;
+    }
+
+    .tab-btn:hover {
+      background: #1e2a15;
+      color: #d4a853;
+      border-color: #b8860b;
+    }
+
+    .tab-btn.active {
+      background: #2a3520;
+      color: #d4a853;
+      border-color: #b8860b;
+      box-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeSlide 0.45s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0.4; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #151e16;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid #2a3520;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8);
+      border-color: #b8860b;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 220px;
+      background: #1a2a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 2px solid #2a3520;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-image .placeholder {
+      color: #3a4a30;
+      font-size: 3rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-body i {
+      font-size: 2rem;
+      color: #d4a853;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-body h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+      color: #d4a853;
+    }
+
+    .card-body p {
+      color: #b0a080;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .card-body .extra-info {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a3520;
+      color: #908060;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .phenomena-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .phenomenon-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #151e16;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid #2a3520;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .phenomenon-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8);
+      border-color: #b8860b;
+    }
+
+    .phenomenon-image {
+      flex: 1 1 300px;
+      min-width: 250px;
+      min-height: 250px;
+      background: #1a2a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phenomenon-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .phenomenon-item:hover .phenomenon-image img {
+      transform: scale(1.03);
+    }
+
+    .phenomenon-text {
+      flex: 1 1 400px;
+      padding: 2rem;
+    }
+
+    .phenomenon-text h3 {
+      font-size: 1.8rem;
+      color: #d4a853;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phenomenon-text h3 i {
+      color: #d4a853;
+      font-size: 2rem;
+    }
+
+    .phenomenon-text .description {
+      font-size: 1.05rem;
+      color: #c0b090;
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .phenomenon-text .details {
+      background: #0f1a10;
+      border-radius: 1rem;
+      padding: 1.2rem 1.5rem;
+      border-left: 4px solid #b8860b;
+    }
+
+    .phenomenon-text .details h4 {
+      color: #d4a853;
+      margin-bottom: 0.8rem;
+    }
+
+    .phenomenon-text .details ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .phenomenon-text .details ul li {
+      padding: 0.5rem 0;
+      color: #b0a080;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .phenomenon-text .details ul li:last-child {
+      border-bottom: none;
+    }
+
+    .phenomenon-text .details ul li i {
+      color: #b8860b;
+      margin-top: 3px;
+    }
+
+    .interactive-demo-box {
+      background: #151e16;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      border: 1px solid #2a3520;
+    }
+
+    .lotus-effect {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle at 30% 30%, #4a6a3a, #1a2a10);
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      box-shadow: 0 0 50px rgba(30, 60, 20, 0.5);
+      position: relative;
+      border: 3px solid #3a5a2a;
+    }
+
+    .water-droplet {
+      width: 32px;
+      height: 32px;
+      background: rgba(180, 220, 255, 0.9);
+      border-radius: 50%;
+      position: absolute;
+      top: 35px;
+      left: 70px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      transition: 0.2s;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    input[type=range] {
+      width: 200px;
+      accent-color: #b8860b;
+    }
+
+    button {
+      background: #2a3520;
+      border: 1px solid #b8860b;
+      color: #d4a853;
+      padding: 0.8rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #3a4a2a;
+      box-shadow: 0 0 20px rgba(184, 134, 11, 0.4);
+    }
+
+    .photo-note {
+      background: #0f1a10;
+      border: 1px dashed #3a4a30;
+      border-radius: 0.8rem;
+      padding: 0.6rem 1rem;
+      color: #908060;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      color: #6a6a4a;
+      border-top: 1px solid #2a3520;
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .phenomenon-item {
+        flex-direction: column;
+      }
+      .title-section h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="main-container">
+  <div class="hero">
+    <div class="title-section">
+      <h1>
+        <i class="fas fa-leaf"></i> Бионика
+      </h1>
+      <div class="subtitle">
+        <i class="fas fa-dna"></i> Природа как инженер
+        <span class="date-badge"><i class="far fa-calendar-alt"></i> 2026</span>
+      </div>
+    </div>
+    <div>
+      <i class="fas fa-microscope" style="font-size: 3rem; color: #b8860b; opacity: 0.8;"></i>
+    </div>
+  </div>
+
+  <!-- Вкладки -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="theory"><i class="fas fa-book-open"></i> Теория</button>
+    <button class="tab-btn" data-tab="phenomena"><i class="fas fa-microscope"></i> Явления</button>
+    <button class="tab-btn" data-tab="gallery"><i class="fas fa-lightbulb"></i> Изобретения</button>
+    <button class="tab-btn" data-tab="interact"><i class="fas fa-cogs"></i> Интерактив</button>
+  </div>
+
+  <!-- Панель: Теория -->
+  <div class="tab-pane active" id="theory">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #d4a853;"><i class="fas fa-leaf"></i> Что такое бионика?</h2>
+    <p style="font-size: 1.15rem; max-width: 900px; margin-bottom: 2rem; color: #c0b090;">Бионика — наука, использующая биологические системы и принципы для создания технологий. От крыла самолёта до застёжки-липучки — природа вдохновляет инженеров. Она объединяет биологию, физику, химию и инженерию для решения сложнейших задач человечества.</p>
+    
+    <div class="grid">
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: дельфин или акула в воде -->
+          <img src="photos/dolphin.jpg" alt="Дельфин в воде" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fish placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/dolphin.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-fish"></i>
+          <h3>Гидродинамика</h3>
+          <p>Форма дельфинов и акул уменьшает сопротивление воды при движении.</p>
+          <p class="extra-info">💡 Коэффициент лобового сопротивления дельфина — 0.0036, что в 10 раз меньше, чем у торпеды.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: птица в полёте или крыло птицы крупным планом -->
+          <img src="photos/bird-flight.jpg" alt="Птица в полёте" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-feather-alt placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/bird-flight.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-feather-alt"></i>
+          <h3>Полёт птиц</h3>
+          <p>Крыло самолёта имитирует изгиб птичьего крыла для создания подъёмной силы.</p>
+          <p class="extra-info">✈️ Изогнутый профиль крыла создаёт разницу давления: сверху скорость воздуха выше, давление ниже.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: паутина крупным планом с каплями росы -->
+          <img src="photos/spider-web.jpg" alt="Паутина" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-spider placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/spider-web.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-spider"></i>
+          <h3>Паутина</h3>
+          <p>Прочнее стали при той же толщине. Вдохновляет создание сверхпрочных волокон.</p>
+          <p class="extra-info">🕸️ Паучий шёлк в 5 раз прочнее стали и может растягиваться на 30% без разрыва.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: летучая мышь в полёте -->
+          <img src="photos/bat.jpg" alt="Летучая мышь" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-wave-square placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/bat.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-wave-square"></i>
+          <h3>Эхолокация</h3>
+          <p>Летучие мыши и дельфины используют ультразвук для ориентации в пространстве.</p>
+          <p class="extra-info">🦇 Частота сигналов летучих мышей достигает 200 кГц, что вдохновило создание сонаров.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: зелёный лист растения на солнце -->
+          <img src="photos/leaf-sun.jpg" alt="Лист на солнце" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-sun placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/leaf-sun.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-sun"></i>
+          <h3>Фотосинтез</h3>
+          <p>Растения преобразуют солнечный свет в энергию с эффективностью до 6%.</p>
+          <p class="extra-info">🌿 Искусственные листья имитируют фотосинтез для производства водорода как топлива.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: термитник в саванне -->
+          <img src="photos/termite-mound.jpg" alt="Термитник" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-thermometer-half placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/termite-mound.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-thermometer-half"></i>
+          <h3>Терморегуляция</h3>
+          <p>Термитники поддерживают постоянную температуру внутри в жарком климате.</p>
+          <p class="extra-info">🏠 Здание Eastgate в Зимбабве использует пассивное охлаждение по принципу термитника.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Панель: Явления бионики -->
+  <div class="tab-pane" id="phenomena">
+    <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: #d4a853;"><i class="fas fa-microscope"></i> Природные явления в бионике</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #b0a080;">Изучите удивительные природные феномены, которые вдохновляют учёных и инженеров на создание инновационных технологий.</p>
+    
+    <div class="phenomena-container">
+      <!-- Явление 1: Эффект лотоса -->
+      <div class="phenomenon-item">
+        <div class="phenomenon-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: лист лотоса с каплями воды -->
+          <img src="photos/lotus-leaf.jpg" alt="Лист лотоса с каплями" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-water placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/lotus-leaf.jpg</p>'">
+        </div>
+        <div class="phenomenon-text">
+          <h3><i class="fas fa-water"></i> Эффект лотоса</h3>
+          <p class="description">Листья лотоса обладают способностью отталкивать воду и грязь. Капли скатываются, захватывая частицы пыли, благодаря чему лист всегда остаётся чистым.</p>
+          <div class="details">
+            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
+            <ul>
+              <li><i class="fas fa-microscope"></i> <strong>Микроструктура:</strong> восковые кристаллы размером 5-10 мкм</li>
+              <li><i class="fas fa-tint"></i> <strong>Угол смачивания:</strong> до 170° (супергидрофобность)</li>
+              <li><i class="fas fa-atom"></i> <strong>Самоочищение:</strong> вода собирается в сферы и уносит загрязнения</li>
+              <li><i class="fas fa-industry"></i> <strong>Применение:</strong> краски, стёкла, ткани, фасады зданий</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Явление 2: Биолюминесценция -->
+      <div class="phenomenon-item">
+        <div class="phenomenon-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: светлячки в темноте или светящийся планктон -->
+          <img src="photos/bioluminescence.jpg" alt="Биолюминесценция" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-lightbulb placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/bioluminescence.jpg</p>'">
+        </div>
+        <div class="phenomenon-text">
+          <h3><i class="fas fa-lightbulb"></i> Биолюминесценция</h3>
+          <p class="description">Способность живых организмов излучать свет. Светлячки, глубоководные рыбы и некоторые грибы излучают холодный свет без выделения тепла.</p>
+          <div class="details">
+            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
+            <ul>
+              <li><i class="fas fa-vial"></i> <strong>Реакция:</strong> люцифераза окисляет люциферин</li>
+              <li><i class="fas fa-bolt"></i> <strong>КПД:</strong> почти 100% энергии превращается в свет</li>
+              <li><i class="fas fa-lightbulb"></i> <strong>Применение:</strong> биосенсоры, медицинская диагностика</li>
+              <li><i class="fas fa-tree"></i> <strong>Пример:</strong> проект Glowing Plants — светящиеся растения</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Явление 3: Эхолокация -->
+      <div class="phenomenon-item">
+        <div class="phenomenon-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: дельфин под водой -->
+          <img src="photos/dolphin-echolocation.jpg" alt="Дельфин" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-wave-square placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/dolphin-echolocation.jpg</p>'">
+        </div>
+        <div class="phenomenon-text">
+          <h3><i class="fas fa-wave-square"></i> Эхолокация</h3>
+          <p class="description">Летучие мыши и дельфины излучают звуковые волны и анализируют их отражение для ориентации в пространстве и охоты в полной темноте.</p>
+          <div class="details">
+            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
+            <ul>
+              <li><i class="fas fa-volume-up"></i> <strong>Частота:</strong> ультразвук от 20 до 200 кГц</li>
+              <li><i class="fas fa-clock"></i> <strong>Точность:</strong> дельфин различает предметы на 100 м</li>
+              <li><i class="fas fa-ship"></i> <strong>Применение:</strong> гидролокаторы, сонары, парковочные радары</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Явление 4: Фотосинтез -->
+      <div class="phenomenon-item">
+        <div class="phenomenon-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: крупный план зелёного листа -->
+          <img src="photos/photosynthesis.jpg" alt="Фотосинтез" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-sun placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/photosynthesis.jpg</p>'">
+        </div>
+        <div class="phenomenon-text">
+          <h3><i class="fas fa-sun"></i> Фотосинтез</h3>
+          <p class="description">Растения преобразуют солнечный свет, воду и углекислый газ в органические вещества и кислород — основа жизни на Земле и образец энергоэффективности.</p>
+          <div class="details">
+            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
+            <ul>
+              <li><i class="fas fa-chlorophyll"></i> <strong>Хлорофилл:</strong> поглощает красный и синий свет</li>
+              <li><i class="fas fa-percentage"></i> <strong>Эффективность:</strong> до 6% солнечной энергии</li>
+              <li><i class="fas fa-solar-panel"></i> <strong>Применение:</strong> искусственный фотосинтез для водородного топлива</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Панель: Галерея изобретений -->
+  <div class="tab-pane" id="gallery">
+    <h2 style="margin-bottom: 1.5rem; color: #d4a853;"><i class="fas fa-lightbulb"></i> Бионические изобретения</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: застёжка-липучка крупным планом или репейник -->
+          <img src="photos/velcro.jpg" alt="Липучка Velcro" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-link placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/velcro.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-link"></i>
+          <h3>Липучка Velcro</h3>
+          <p>Вдохновлена микрокрючками репейника. Швейцарский инженер Жорж де Местраль создал застёжку в 1941 году.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: японский поезд Синкансэн -->
+          <img src="photos/shinkansen.jpg" alt="Поезд Синкансэн" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-train placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/shinkansen.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-train"></i>
+          <h3>Поезд Синкансэн</h3>
+          <p>Нос поезда повторяет форму клюва зимородка — это снижает шум и улучшает аэродинамику.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <!-- ЗАМЕНИТЬ НА ФОТО: самоочищающееся стекло или фасад здания -->
+          <img src="photos/lotus-glass.jpg" alt="Эффект лотоса в технологиях" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-water placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/lotus-glass.jpg</p>'">
+        </div>
+        <div class="card-body">
+          <i class="fas fa-water"></i>
+          <h3>Эффект лотоса</h3>
+          <p>Самоочищающиеся поверхности на основе микроструктуры листа лотоса используются в красках и стёклах.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Панель: Интерактив -->
+  <div class="tab-pane" id="interact">
+    <h2 style="color: #d4a853;"><i class="fas fa-flask"></i> Интерактивная демонстрация: Эффект лотоса</h2>
+    <div class="interactive-demo-box">
+      <p style="font-size: 1.1rem; color: #c0b090;">Передвигайте каплю воды по гидрофобной поверхности листа лотоса</p>
+      <div class="lotus-effect" id="lotusLeaf">
+        <div class="water-droplet" id="droplet"></div>
+      </div>
+      <div class="slider-container">
+        <i class="fas fa-tint" style="color: #d4a853;"></i>
+        <input type="range" id="waterPosX" min="10" max="140" value="70" step="1">
+        <span style="color: #c0b090;">Позиция капли</span>
+        <button id="randomDropBtn"><i class="fas fa-random"></i> Случайное положение</button>
+      </div>
+      <p style="margin-top:1.2rem; color: #908060;"><i class="fas fa-info-circle"></i> Микрорельеф листа лотоса создаёт угол смачивания более 150°, заставляя воду собираться в идеальные сферы и скатываться, унося загрязнения.</p>
+    </div>
+  </div>
+  
+  <footer>
+    <i class="far fa-copyright"></i> Бионика — мост между биологией и технологиями • 2026.
+Работу выполняли: Яропкин П., Рогов К., Башкирев М., Бочкин Т., Зубакин С.
+  </footer>
+</div>
+
+<script>
+  (function() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        panes.forEach(p => p.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    const droplet = document.getElementById('droplet');
+    const posSlider = document.getElementById('waterPosX');
+    const randomBtn = document.getElementById('randomDropBtn');
+    const leaf = document.getElementById('lotusLeaf');
+
+    function updateDropletPosition(xValue) {
+      if (!droplet) return;
+      droplet.style.left = xValue + 'px';
+      const yBase = 35 + Math.sin(xValue * 0.2) * 6;
+      droplet.style.top = yBase + 'px';
+    }
+
+    if (posSlider) {
+      posSlider.addEventListener('input', (e) => {
+        updateDropletPosition(parseInt(e.target.value, 10));
+      });
+    }
+
+    if (randomBtn) {
+      randomBtn.addEventListener('click', () => {
+        const randomX = Math.floor(Math.random() * 131) + 10;
+        if (posSlider) posSlider.value = randomX;
+        updateDropletPosition(randomX);
+      });
+    }
+
+    updateDropletPosition(70);
+
+    if (leaf) {
+      leaf.addEventListener('click', (e) => {
+        const rect = leaf.getBoundingClientRect();
+        const relativeX = e.clientX - rect.left;
+        let mappedX = Math.min(140, Math.max(10, relativeX - 16));
+        if (posSlider) posSlider.value = Math.round(mappedX);
+        updateDropletPosition(mappedX);
+      });
+    }
+
+    console.log('🌿 Сайт "Бионика" готов! Добавьте фотографии в папку photos/');
+  })();
+</script>
+</body>
+</html>
