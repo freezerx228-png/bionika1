@@ -1,746 +1,786 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
-  <title>Бионика • Интерактивный мир живой инженерии</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Мама, с днём рождения! 💐 14.06 — 40 лет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #0a0f0c;
-      color: #e8e0d0;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1.5rem;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fde9f0 0%, #fce4ec 40%, #fff9e6 100%);
+            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    .main-container {
-      max-width: 1300px;
-      width: 100%;
-      background: #111915;
-      border-radius: 2rem;
-      padding: 2rem 2.2rem;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-      border: 1px solid #2a3520;
-    }
+        /* Декоративные лепестки */
+        .petal {
+            position: fixed;
+            background: radial-gradient(circle at 20% 30%, #ffb7c5, #f06292);
+            width: 30px;
+            height: 30px;
+            border-radius: 100% 0 100% 0;
+            opacity: 0.25;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: 0;
+            animation: floatPetal 8s ease-in-out infinite;
+        }
 
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2.5rem;
-      border-bottom: 2px solid #2a3520;
-      padding-bottom: 1.5rem;
-    }
+        @keyframes floatPetal {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(5deg); }
+            50% { transform: translateY(-8px) rotate(-3deg); }
+            75% { transform: translateY(-20px) rotate(7deg); }
+        }
 
-    .title-section h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: linear-gradient(to right, #d4a853, #c9973a, #b8860b);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+        /* Летящие сердечки */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 2rem;
+            animation: heartFly 3s ease-out forwards;
+        }
 
-    .title-section h1 i {
-      background: none;
-      color: #d4a853;
-      font-size: 3rem;
-      filter: drop-shadow(0 0 10px #b8860b);
-    }
+        @keyframes heartFly {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-200px) scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) scale(0.3) rotate(360deg);
+            }
+        }
 
-    .subtitle {
-      color: #c0b090;
-      font-size: 1.25rem;
-      margin-top: 0.3rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
 
-    .date-badge {
-      background: #1e2a15;
-      padding: 0.5rem 1.4rem;
-      border-radius: 3rem;
-      font-weight: 500;
-      color: #d4a853;
-      border: 1px solid #3a4a20;
-    }
+        /* Основная открытка */
+        .card {
+            background: rgba(255, 248, 250, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(255,245,248,0.85) 0%, rgba(255,255,255,0.7) 100%);
+            border-radius: 48px;
+            padding: 50px 35px;
+            box-shadow: 0 35px 70px rgba(180, 100, 120, 0.2),
+                        0 10px 25px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.4s ease;
+        }
 
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 2rem 0;
-      border-bottom: 1px solid #2a3520;
-      padding-bottom: 1rem;
-    }
+        .card:hover {
+            transform: translateY(-5px) scale(1.01);
+        }
 
-    .tab-btn {
-      background: transparent;
-      border: 1px solid #2a3520;
-      padding: 0.9rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #a09070;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      letter-spacing: 0.4px;
-    }
+        .flowers-emoji {
+            font-size: clamp(2.5rem, 5vw, 3.2rem);
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 6px 8px rgba(255, 150, 160, 0.4));
+        }
 
-    .tab-btn i {
-      font-size: 1.2rem;
-      color: #b8860b;
-    }
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            font-weight: 700;
+            color: #b3446c;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7);
+            word-break: break-word;
+        }
 
-    .tab-btn:hover {
-      background: #1e2a15;
-      color: #d4a853;
-      border-color: #b8860b;
-    }
+        .sub-greeting {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 500;
+            color: #c96b8b;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
 
-    .tab-btn.active {
-      background: #2a3520;
-      color: #d4a853;
-      border-color: #b8860b;
-      box-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
-    }
+        .message-box {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 36px;
+            padding: 25px 22px;
+            margin: 20px 0 28px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 18px rgba(170, 90, 110, 0.1);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #4a2c38;
+            line-height: 1.7;
+            font-weight: 400;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .tab-pane {
-      display: none;
-      animation: fadeSlide 0.45s ease;
-    }
+        .message-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(170, 90, 110, 0.15);
+        }
 
-    .tab-pane.active {
-      display: block;
-    }
+        .message-box p {
+            margin-bottom: 16px;
+        }
 
-    @keyframes fadeSlide {
-      0% { opacity: 0.4; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+        .message-box p:last-child {
+            margin-bottom: 0;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
+        .highlight {
+            font-weight: 600;
+            color: #b13e5e;
+            background: rgba(255, 225, 235, 0.6);
+            padding: 0 6px;
+            border-radius: 8px;
+        }
 
-    .card {
-      background: #151e16;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid #2a3520;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .signature {
+            margin-top: 20px;
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.3rem);
+            color: #b3446c;
+            text-align: right;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-top: 1px dashed #e7b7c9;
+            padding-top: 18px;
+        }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8);
-      border-color: #b8860b;
-    }
+        .btn {
+            background: #e57898;
+            border: none;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            padding: 14px 32px;
+            border-radius: 50px;
+            margin-top: 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #e57898, #c25479);
+            box-shadow: 0 10px 18px -8px rgba(180, 70, 100, 0.5);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.3);
+            width: auto;
+            min-width: 200px;
+            position: relative;
+        }
 
-    .card-image {
-      width: 100%;
-      height: 220px;
-      background: #1a2a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-bottom: 2px solid #2a3520;
-    }
+        .btn:hover {
+            background: linear-gradient(135deg, #ec8baa, #d16484);
+            box-shadow: 0 14px 22px -8px rgba(170, 60, 100, 0.6);
+            transform: scale(1.05);
+        }
 
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
+        .btn:active {
+            transform: scale(0.96);
+        }
 
-    .card:hover .card-image img {
-      transform: scale(1.05);
-    }
+        .date-tag {
+            margin-top: 18px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: #b28295;
+            letter-spacing: 1px;
+        }
 
-    .card-image .placeholder {
-      color: #3a4a30;
-      font-size: 3rem;
-    }
+        /* Галерея фотографий */
+        .gallery-section {
+            background: rgba(255, 248, 250, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(255,245,248,0.85) 0%, rgba(255,255,255,0.7) 100%);
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 35px 70px rgba(180, 100, 120, 0.2),
+                        0 10px 25px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.4s ease;
+        }
 
-    .card-body {
-      padding: 1.5rem;
-    }
+        .gallery-section:hover {
+            transform: scale(1.01);
+        }
 
-    .card-body i {
-      font-size: 2rem;
-      color: #d4a853;
-      margin-bottom: 0.8rem;
-    }
+        .gallery-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: #b3446c;
+            margin-bottom: 10px;
+        }
 
-    .card-body h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.7rem;
-      color: #d4a853;
-    }
+        .gallery-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            color: #9e6b7a;
+            margin-bottom: 25px;
+        }
 
-    .card-body p {
-      color: #b0a080;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            width: 100%;
+        }
 
-    .card-body .extra-info {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #2a3520;
-      color: #908060;
-      font-size: 0.9rem;
-      font-style: italic;
-    }
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(150, 80, 100, 0.2);
+            transition: all 0.35s ease;
+            cursor: pointer;
+            background: #fce4ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+        }
 
-    .phenomena-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      margin-top: 1.5rem;
-    }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
 
-    .phenomenon-item {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: #151e16;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid #2a3520;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 18px 30px rgba(160, 70, 90, 0.35);
+            border-color: #f8bbd0;
+        }
 
-    .phenomenon-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8);
-      border-color: #b8860b;
-    }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
 
-    .phenomenon-image {
-      flex: 1 1 300px;
-      min-width: 250px;
-      min-height: 250px;
-      background: #1a2a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        /* Секция "Тёплые воспоминания" */
+        .memories-section {
+            background: rgba(255, 248, 250, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(255,245,248,0.85) 0%, rgba(255,255,255,0.7) 100%);
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 35px 70px rgba(180, 100, 120, 0.2),
+                        0 10px 25px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.4s ease;
+        }
 
-    .phenomenon-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
+        .memories-section:hover {
+            transform: scale(1.01);
+        }
 
-    .phenomenon-item:hover .phenomenon-image img {
-      transform: scale(1.03);
-    }
+        .memories-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: #b3446c;
+            margin-bottom: 24px;
+            text-align: center;
+        }
 
-    .phenomenon-text {
-      flex: 1 1 400px;
-      padding: 2rem;
-    }
+        .memory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-    .phenomenon-text h3 {
-      font-size: 1.8rem;
-      color: #d4a853;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .memory-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255, 220, 230, 0.8);
+            transition: all 0.3s ease;
+        }
 
-    .phenomenon-text h3 i {
-      color: #d4a853;
-      font-size: 2rem;
-    }
+        .memory-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(160, 80, 100, 0.15);
+        }
 
-    .phenomenon-text .description {
-      font-size: 1.05rem;
-      color: #c0b090;
-      margin-bottom: 1.2rem;
-      line-height: 1.7;
-    }
+        .memory-emoji {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fce4ec;
+            border-radius: 18px;
+        }
 
-    .phenomenon-text .details {
-      background: #0f1a10;
-      border-radius: 1rem;
-      padding: 1.2rem 1.5rem;
-      border-left: 4px solid #b8860b;
-    }
+        .memory-text {
+            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+            color: #4a2c38;
+            line-height: 1.6;
+        }
 
-    .phenomenon-text .details h4 {
-      color: #d4a853;
-      margin-bottom: 0.8rem;
-    }
+        .memory-text strong {
+            color: #b3446c;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.05em;
+        }
 
-    .phenomenon-text .details ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Секция пожеланий от сына */
+        .wishes-section {
+            background: rgba(255, 248, 250, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(255,245,248,0.85) 0%, rgba(255,255,255,0.7) 100%);
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 35px 70px rgba(180, 100, 120, 0.2),
+                        0 10px 25px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
 
-    .phenomenon-text .details ul li {
-      padding: 0.5rem 0;
-      color: #b0a080;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
+        .wishes-section:hover {
+            transform: scale(1.01);
+        }
 
-    .phenomenon-text .details ul li:last-child {
-      border-bottom: none;
-    }
+        .wishes-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: #b3446c;
+            margin-bottom: 20px;
+        }
 
-    .phenomenon-text .details ul li i {
-      color: #b8860b;
-      margin-top: 3px;
-    }
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+        }
 
-    .interactive-demo-box {
-      background: #151e16;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      margin: 1.5rem 0;
-      text-align: center;
-      border: 1px solid #2a3520;
-    }
+        .wish-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 22px 14px;
+            border: 1px solid rgba(255, 220, 230, 0.8);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
 
-    .lotus-effect {
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle at 30% 30%, #4a6a3a, #1a2a10);
-      border-radius: 50%;
-      margin: 1.5rem auto;
-      box-shadow: 0 0 50px rgba(30, 60, 20, 0.5);
-      position: relative;
-      border: 3px solid #3a5a2a;
-    }
+        .wish-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 22px rgba(160, 80, 100, 0.2);
+        }
 
-    .water-droplet {
-      width: 32px;
-      height: 32px;
-      background: rgba(180, 220, 255, 0.9);
-      border-radius: 50%;
-      position: absolute;
-      top: 35px;
-      left: 70px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-      transition: 0.2s;
-    }
+        .wish-emoji {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
 
-    .slider-container {
-      display: flex;
-      align-items: center;
-      gap: 1.3rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-      justify-content: center;
-    }
+        .wish-text {
+            font-size: 0.95rem;
+            color: #5a3a44;
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
-    input[type=range] {
-      width: 200px;
-      accent-color: #b8860b;
-    }
+        .wish-author {
+            font-size: 0.8rem;
+            color: #b28295;
+            margin-top: 6px;
+            font-style: italic;
+        }
 
-    button {
-      background: #2a3520;
-      border: 1px solid #b8860b;
-      color: #d4a853;
-      padding: 0.8rem 1.8rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-    }
+        /* Адаптивность для мобильных */
+        @media (max-width: 600px) {
+            .card {
+                padding: 35px 20px;
+                border-radius: 38px;
+            }
 
-    button:hover {
-      background: #3a4a2a;
-      box-shadow: 0 0 20px rgba(184, 134, 11, 0.4);
-    }
+            .gallery-section,
+            .memories-section,
+            .wishes-section {
+                padding: 30px 18px;
+                border-radius: 38px;
+            }
 
-    .photo-note {
-      background: #0f1a10;
-      border: 1px dashed #3a4a30;
-      border-radius: 0.8rem;
-      padding: 0.6rem 1rem;
-      color: #908060;
-      font-size: 0.85rem;
-      text-align: center;
-      margin-top: 0.5rem;
-    }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
 
-    footer {
-      margin-top: 2.5rem;
-      text-align: center;
-      color: #6a6a4a;
-      border-top: 1px solid #2a3520;
-      padding-top: 1.5rem;
-    }
+            .gallery-item {
+                border-radius: 18px;
+            }
 
-    @media (max-width: 768px) {
-      .phenomenon-item {
-        flex-direction: column;
-      }
-      .title-section h1 {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
+            .message-box {
+                padding: 18px 15px;
+                border-radius: 28px;
+            }
+
+            .memory-item {
+                padding: 14px 15px;
+                gap: 12px;
+            }
+
+            .memory-emoji {
+                width: 40px;
+                height: 40px;
+                font-size: 1.6rem;
+                border-radius: 14px;
+            }
+
+            .wishes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .btn {
+                min-width: 160px;
+                padding: 12px 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .wishes-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .wish-card {
+                padding: 16px 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="main-container">
-  <div class="hero">
-    <div class="title-section">
-      <h1>
-        <i class="fas fa-leaf"></i> Бионика
-      </h1>
-      <div class="subtitle">
-        <i class="fas fa-dna"></i> Природа как инженер
-        <span class="date-badge"><i class="far fa-calendar-alt"></i> 2026</span>
-      </div>
+    <!-- Лепестки создаются через JS -->
+    <div class="container">
+
+        <!-- Основная открытка -->
+        <div class="card">
+            <div class="flowers-emoji">🌸✨🌷✨🌸</div>
+            <h1>С днём рождения,<br>Мама!</h1>
+            <div class="sub-greeting">14 июня — тебе 40 лет! 💖</div>
+
+            <div class="message-box">
+                <p>💖 <span class="highlight">Моя родная мама</span></p>
+                <p>Сегодня, <strong>14 июня</strong>, тебе исполняется <strong>40 лет</strong> — прекрасная дата! И я хочу сказать тебе то, что чувствую каждый день: ты — удивительный человек. Твои золотые руки творят чудеса: раньше ты создавала невероятные десерты и торты, которые были настоящими произведениями искусства, а теперь ты даришь людям здоровье и расслабление своим массажем. Ты умеешь делать мир лучше — и через кондитерское дело, и через заботу о теле и душе.</p>
+                <p>Я восхищаюсь твоей силой, нежностью и умением находить красоту во всём. Ты научила меня главному: любить искренне, работать с душой и никогда не сдаваться. Спасибо тебе за каждый твой совет, за каждое объятие и за то, что ты просто есть.</p>
+                <p>В 40 лет ты цветёшь, как самый прекрасный цветок. Пусть твои руки никогда не устают, пусть твоё сердце всегда будет спокойным и счастливым, а каждый новый день приносит радость и вдохновение. Ты заслуживаешь всего самого лучшего, и я обещаю быть рядом всегда.</p>
+                <p>🌸 С днём рождения, моя любимая мама! С твоим золотым юбилеем — 40 лет! 🌸</p>
+            </div>
+
+            <div class="signature">Твой любящий сын</div>
+
+            <button class="btn" id="surpriseBtn">🎁 Нажми, мама</button>
+            <div class="date-tag">14 июня — день, когда мир стал лучше</div>
+        </div>
+
+        <!-- Галерея фотографий -->
+        <div class="gallery-section">
+            <div class="gallery-title">📸 Наши счастливые моменты</div>
+            <div class="gallery-subtitle">Здесь хранятся самые тёплые воспоминания</div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Фото 1 -->
+                <div class="gallery-item">
+                    <img src="images/photo1.jpg" alt="Мама Саша">
+                </div>
+                <!-- Фото 2 -->
+                <div class="gallery-item">
+                    <img src="images/photo2.jpg" alt="Мама Саша">
+                </div>
+                <!-- Фото 3 -->
+                <div class="gallery-item">
+                    <img src="images/photo3.jpg" alt="Мама Саша">
+                </div>
+                <!-- Фото 4 -->
+                <div class="gallery-item">
+                    <img src="images/photo4.jpg" alt="Мама Саша">
+                </div>
+                <!-- Фото 5 -->
+                <div class="gallery-item">
+                    <img src="images/photo5.jpg" alt="Мама Саша">
+                </div>
+                <!-- Фото 6 -->
+                <div class="gallery-item">
+                    <img src="images/photo6.jpg" alt="Мама Саша">
+                </div>
+            </div>
+        </div>
+
+        <!-- Тёплые воспоминания -->
+        <div class="memories-section">
+            <div class="memories-title">🌟 Тёплые воспоминания</div>
+            <div class="memory-list">
+                <div class="memory-item">
+                    <div class="memory-emoji">👶</div>
+                    <div class="memory-text">
+                        <strong>Моё детство</strong>
+                        Помню, как ты читала мне сказки перед сном и говорила, что я могу стать кем угодно. Твоя вера в меня сделала меня сильнее.
+                    </div>
+                </div>
+                <div class="memory-item">
+                    <div class="memory-emoji">🎂</div>
+                    <div class="memory-text">
+                        <strong>Твои кондитерские шедевры</strong>
+                        Ты создавала потрясающие торты и десерты — настоящие произведения искусства! Каждый праздник ты превращала в волшебство своими золотыми руками. Твой талант кондитера всегда меня восхищал.
+                    </div>
+                </div>
+                <div class="memory-item">
+                    <div class="memory-emoji">💆‍♀️</div>
+                    <div class="memory-text">
+                        <strong>Твои массажные таланты</strong>
+                        Теперь ты помогаешь людям через массаж — снимаешь усталость, даришь расслабление и здоровье. Твои руки творят чудеса, и я горжусь тем, что ты нашла своё призвание в заботе о других.
+                    </div>
+                </div>
+                <div class="memory-item">
+                    <div class="memory-emoji">💬</div>
+                    <div class="memory-text">
+                        <strong>Твои мудрые советы</strong>
+                        В трудные минуты я всегда вспоминаю твои слова: «Всё будет хорошо, я рядом». И это правда помогает. Твоя поддержка — самое ценное, что у меня есть.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Пожелания от сына -->
+        <div class="wishes-section">
+            <div class="wishes-title">💝 Мои пожелания тебе, мама</div>
+            <div class="wishes-grid">
+                <div class="wish-card">
+                    <div class="wish-emoji">💖</div>
+                    <div class="wish-text">Крепкого здоровья и море энергии на каждый день!</div>
+                    <div class="wish-author">— С любовью, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">🌸</div>
+                    <div class="wish-text">Пусть твои золотые руки никогда не устают творить чудеса!</div>
+                    <div class="wish-author">— С гордостью, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">✨</div>
+                    <div class="wish-text">Счастья, радости и исполнения всех твоих желаний!</div>
+                    <div class="wish-author">— С нежностью, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">🌷</div>
+                    <div class="wish-text">Пусть каждый твой день будет наполнен теплом и улыбками!</div>
+                    <div class="wish-author">— С благодарностью, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">💐</div>
+                    <div class="wish-text">В 40 лет ты прекрасна как никогда — цвети и сияй!</div>
+                    <div class="wish-author">— С восхищением, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">🦋</div>
+                    <div class="wish-text">Лёгкости, вдохновения и новых прекрасных моментов!</div>
+                    <div class="wish-author">— С любовью, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">🎀</div>
+                    <div class="wish-text">Пусть твоя душа всегда будет такой же светлой и доброй!</div>
+                    <div class="wish-author">— С теплотой, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">☀️</div>
+                    <div class="wish-text">Ты — моё солнышко, свети ярко и согревай всех вокруг!</div>
+                    <div class="wish-author">— С обожанием, твой сын</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-emoji">🌟</div>
+                    <div class="wish-text">Пусть судьба дарит тебе только счастливые сюрпризы и приятные встречи!</div>
+                    <div class="wish-author">— Всем сердцем, твой сын</div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div>
-      <i class="fas fa-microscope" style="font-size: 3rem; color: #b8860b; opacity: 0.8;"></i>
-    </div>
-  </div>
 
-  <!-- Вкладки -->
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="theory"><i class="fas fa-book-open"></i> Теория</button>
-    <button class="tab-btn" data-tab="phenomena"><i class="fas fa-microscope"></i> Явления</button>
-    <button class="tab-btn" data-tab="gallery"><i class="fas fa-lightbulb"></i> Изобретения</button>
-    <button class="tab-btn" data-tab="interact"><i class="fas fa-cogs"></i> Интерактив</button>
-  </div>
+    <script>
+        // Создание декоративных лепестков — 50 штук!
+        function createPetals() {
+            const body = document.body;
+            const colors = [
+                'radial-gradient(circle at 20% 30%, #ffb7c5, #f06292)',
+                'radial-gradient(circle at 30% 20%, #ffd0d8, #f48fb1)',
+                'radial-gradient(circle at 20% 40%, #ffe0e5, #f8bbd0)',
+                'radial-gradient(circle at 25% 35%, #ffc1cc, #ec407a)',
+                'radial-gradient(circle at 15% 25%, #fce4ec, #f8bbd0)',
+                'radial-gradient(circle at 40% 30%, #ffb7c5, #e91e63)'
+            ];
+            for (let i = 0; i < 50; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                const size = Math.floor(Math.random() * 35 + 15);
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.top = `${Math.random() * 100}%`;
+                petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.opacity = (Math.random() * 0.3 + 0.08).toString();
+                petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+                petal.style.animationDuration = `${Math.random() * 10 + 6}s`;
+                petal.style.animationDelay = `${Math.random() * 8}s`;
+                body.appendChild(petal);
+            }
+        }
 
-  <!-- Панель: Теория -->
-  <div class="tab-pane active" id="theory">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #d4a853;"><i class="fas fa-leaf"></i> Что такое бионика?</h2>
-    <p style="font-size: 1.15rem; max-width: 900px; margin-bottom: 2rem; color: #c0b090;">Бионика — наука, использующая биологические системы и принципы для создания технологий. От крыла самолёта до застёжки-липучки — природа вдохновляет инженеров. Она объединяет биологию, физику, химию и инженерию для решения сложнейших задач человечества.</p>
-    
-    <div class="grid">
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: дельфин или акула в воде -->
-          <img src="photos/dolphin.jpg" alt="Дельфин в воде" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fish placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/dolphin.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-fish"></i>
-          <h3>Гидродинамика</h3>
-          <p>Форма дельфинов и акул уменьшает сопротивление воды при движении.</p>
-          <p class="extra-info">💡 Коэффициент лобового сопротивления дельфина — 0.0036, что в 10 раз меньше, чем у торпеды.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: птица в полёте или крыло птицы крупным планом -->
-          <img src="photos/bird-flight.jpg" alt="Птица в полёте" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-feather-alt placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/bird-flight.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-feather-alt"></i>
-          <h3>Полёт птиц</h3>
-          <p>Крыло самолёта имитирует изгиб птичьего крыла для создания подъёмной силы.</p>
-          <p class="extra-info">✈️ Изогнутый профиль крыла создаёт разницу давления: сверху скорость воздуха выше, давление ниже.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: паутина крупным планом с каплями росы -->
-          <img src="photos/spider-web.jpg" alt="Паутина" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-spider placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/spider-web.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-spider"></i>
-          <h3>Паутина</h3>
-          <p>Прочнее стали при той же толщине. Вдохновляет создание сверхпрочных волокон.</p>
-          <p class="extra-info">🕸️ Паучий шёлк в 5 раз прочнее стали и может растягиваться на 30% без разрыва.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: летучая мышь в полёте -->
-          <img src="photos/bat.jpg" alt="Летучая мышь" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-wave-square placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/bat.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-wave-square"></i>
-          <h3>Эхолокация</h3>
-          <p>Летучие мыши и дельфины используют ультразвук для ориентации в пространстве.</p>
-          <p class="extra-info">🦇 Частота сигналов летучих мышей достигает 200 кГц, что вдохновило создание сонаров.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: зелёный лист растения на солнце -->
-          <img src="photos/leaf-sun.jpg" alt="Лист на солнце" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-sun placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/leaf-sun.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-sun"></i>
-          <h3>Фотосинтез</h3>
-          <p>Растения преобразуют солнечный свет в энергию с эффективностью до 6%.</p>
-          <p class="extra-info">🌿 Искусственные листья имитируют фотосинтез для производства водорода как топлива.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: термитник в саванне -->
-          <img src="photos/termite-mound.jpg" alt="Термитник" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-thermometer-half placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/termite-mound.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-thermometer-half"></i>
-          <h3>Терморегуляция</h3>
-          <p>Термитники поддерживают постоянную температуру внутри в жарком климате.</p>
-          <p class="extra-info">🏠 Здание Eastgate в Зимбабве использует пассивное охлаждение по принципу термитника.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+        // Массовый запуск сердечек по всему экрану
+        function spawnHearts() {
+            const body = document.body;
+            const heartEmojis = ['❤️', '💖', '💕', '💗', '💝', '💘', '🌸', '✨', '💐', '🌷'];
+            const totalHearts = 60; // Количество сердечек за один запуск
 
-  <!-- Панель: Явления бионики -->
-  <div class="tab-pane" id="phenomena">
-    <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: #d4a853;"><i class="fas fa-microscope"></i> Природные явления в бионике</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #b0a080;">Изучите удивительные природные феномены, которые вдохновляют учёных и инженеров на создание инновационных технологий.</p>
-    
-    <div class="phenomena-container">
-      <!-- Явление 1: Эффект лотоса -->
-      <div class="phenomenon-item">
-        <div class="phenomenon-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: лист лотоса с каплями воды -->
-          <img src="photos/lotus-leaf.jpg" alt="Лист лотоса с каплями" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-water placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/lotus-leaf.jpg</p>'">
-        </div>
-        <div class="phenomenon-text">
-          <h3><i class="fas fa-water"></i> Эффект лотоса</h3>
-          <p class="description">Листья лотоса обладают способностью отталкивать воду и грязь. Капли скатываются, захватывая частицы пыли, благодаря чему лист всегда остаётся чистым.</p>
-          <div class="details">
-            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
-            <ul>
-              <li><i class="fas fa-microscope"></i> <strong>Микроструктура:</strong> восковые кристаллы размером 5-10 мкм</li>
-              <li><i class="fas fa-tint"></i> <strong>Угол смачивания:</strong> до 170° (супергидрофобность)</li>
-              <li><i class="fas fa-atom"></i> <strong>Самоочищение:</strong> вода собирается в сферы и уносит загрязнения</li>
-              <li><i class="fas fa-industry"></i> <strong>Применение:</strong> краски, стёкла, ткани, фасады зданий</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+            for (let i = 0; i < totalHearts; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.classList.add('floating-heart');
+                    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.top = `${Math.random() * 60 + 40}%`; // Стартуют из нижней части экрана
+                    heart.style.fontSize = `${Math.random() * 2.5 + 1.5}rem`;
+                    heart.style.animationDuration = `${Math.random() * 2 + 2.5}s`;
+                    heart.style.animationDelay = '0s';
+                    body.appendChild(heart);
 
-      <!-- Явление 2: Биолюминесценция -->
-      <div class="phenomenon-item">
-        <div class="phenomenon-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: светлячки в темноте или светящийся планктон -->
-          <img src="photos/bioluminescence.jpg" alt="Биолюминесценция" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-lightbulb placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/bioluminescence.jpg</p>'">
-        </div>
-        <div class="phenomenon-text">
-          <h3><i class="fas fa-lightbulb"></i> Биолюминесценция</h3>
-          <p class="description">Способность живых организмов излучать свет. Светлячки, глубоководные рыбы и некоторые грибы излучают холодный свет без выделения тепла.</p>
-          <div class="details">
-            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
-            <ul>
-              <li><i class="fas fa-vial"></i> <strong>Реакция:</strong> люцифераза окисляет люциферин</li>
-              <li><i class="fas fa-bolt"></i> <strong>КПД:</strong> почти 100% энергии превращается в свет</li>
-              <li><i class="fas fa-lightbulb"></i> <strong>Применение:</strong> биосенсоры, медицинская диагностика</li>
-              <li><i class="fas fa-tree"></i> <strong>Пример:</strong> проект Glowing Plants — светящиеся растения</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+                    // Удаляем сердечко после анимации
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3500);
+                }, i * 30); // Небольшая задержка между появлениями для волны
+            }
+        }
 
-      <!-- Явление 3: Эхолокация -->
-      <div class="phenomenon-item">
-        <div class="phenomenon-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: дельфин под водой -->
-          <img src="photos/dolphin-echolocation.jpg" alt="Дельфин" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-wave-square placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/dolphin-echolocation.jpg</p>'">
-        </div>
-        <div class="phenomenon-text">
-          <h3><i class="fas fa-wave-square"></i> Эхолокация</h3>
-          <p class="description">Летучие мыши и дельфины излучают звуковые волны и анализируют их отражение для ориентации в пространстве и охоты в полной темноте.</p>
-          <div class="details">
-            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
-            <ul>
-              <li><i class="fas fa-volume-up"></i> <strong>Частота:</strong> ультразвук от 20 до 200 кГц</li>
-              <li><i class="fas fa-clock"></i> <strong>Точность:</strong> дельфин различает предметы на 100 м</li>
-              <li><i class="fas fa-ship"></i> <strong>Применение:</strong> гидролокаторы, сонары, парковочные радары</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        // Сюрприз-кнопка
+        function setupSurprise() {
+            const btn = document.getElementById('surpriseBtn');
+            if (!btn) return;
+            btn.addEventListener('click', () => {
+                const messages = [
+                    '🌸 Ты — чудо, Саша! 🌸',
+                    '✨ Люблю бесконечно ✨',
+                    '💖 Ты лучшая мама 💖',
+                    '🎂 С 40-летием! 🎂',
+                    '🌷 Обнимаю крепко 🌷',
+                    '🦋 Будь счастлива! 🦋',
+                    '💐 Ты прекрасна! 💐',
+                    '🎉 С юбилеем! 🎉'
+                ];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                btn.textContent = randomMsg;
+                btn.style.background = 'linear-gradient(135deg, #f5a0b5, #d45d7a)';
 
-      <!-- Явление 4: Фотосинтез -->
-      <div class="phenomenon-item">
-        <div class="phenomenon-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: крупный план зелёного листа -->
-          <img src="photos/photosynthesis.jpg" alt="Фотосинтез" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-sun placeholder\' style=\'font-size:5rem; color:#3a4a30;\'></i><p class=\'photo-note\'>Добавьте фото: photos/photosynthesis.jpg</p>'">
-        </div>
-        <div class="phenomenon-text">
-          <h3><i class="fas fa-sun"></i> Фотосинтез</h3>
-          <p class="description">Растения преобразуют солнечный свет, воду и углекислый газ в органические вещества и кислород — основа жизни на Земле и образец энергоэффективности.</p>
-          <div class="details">
-            <h4><i class="fas fa-flask"></i> Научное объяснение</h4>
-            <ul>
-              <li><i class="fas fa-chlorophyll"></i> <strong>Хлорофилл:</strong> поглощает красный и синий свет</li>
-              <li><i class="fas fa-percentage"></i> <strong>Эффективность:</strong> до 6% солнечной энергии</li>
-              <li><i class="fas fa-solar-panel"></i> <strong>Применение:</strong> искусственный фотосинтез для водородного топлива</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                // Запускаем массу сердечек!
+                spawnHearts();
 
-  <!-- Панель: Галерея изобретений -->
-  <div class="tab-pane" id="gallery">
-    <h2 style="margin-bottom: 1.5rem; color: #d4a853;"><i class="fas fa-lightbulb"></i> Бионические изобретения</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: застёжка-липучка крупным планом или репейник -->
-          <img src="photos/velcro.jpg" alt="Липучка Velcro" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-link placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/velcro.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-link"></i>
-          <h3>Липучка Velcro</h3>
-          <p>Вдохновлена микрокрючками репейника. Швейцарский инженер Жорж де Местраль создал застёжку в 1941 году.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: японский поезд Синкансэн -->
-          <img src="photos/shinkansen.jpg" alt="Поезд Синкансэн" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-train placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/shinkansen.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-train"></i>
-          <h3>Поезд Синкансэн</h3>
-          <p>Нос поезда повторяет форму клюва зимородка — это снижает шум и улучшает аэродинамику.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <!-- ЗАМЕНИТЬ НА ФОТО: самоочищающееся стекло или фасад здания -->
-          <img src="photos/lotus-glass.jpg" alt="Эффект лотоса в технологиях" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-water placeholder\'></i><p class=\'photo-note\'>Добавьте фото: photos/lotus-glass.jpg</p>'">
-        </div>
-        <div class="card-body">
-          <i class="fas fa-water"></i>
-          <h3>Эффект лотоса</h3>
-          <p>Самоочищающиеся поверхности на основе микроструктуры листа лотоса используются в красках и стёклах.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+                // Через 3 секунды запускаем ещё одну волну
+                setTimeout(() => {
+                    spawnHearts();
+                }, 1500);
 
-  <!-- Панель: Интерактив -->
-  <div class="tab-pane" id="interact">
-    <h2 style="color: #d4a853;"><i class="fas fa-flask"></i> Интерактивная демонстрация: Эффект лотоса</h2>
-    <div class="interactive-demo-box">
-      <p style="font-size: 1.1rem; color: #c0b090;">Передвигайте каплю воды по гидрофобной поверхности листа лотоса</p>
-      <div class="lotus-effect" id="lotusLeaf">
-        <div class="water-droplet" id="droplet"></div>
-      </div>
-      <div class="slider-container">
-        <i class="fas fa-tint" style="color: #d4a853;"></i>
-        <input type="range" id="waterPosX" min="10" max="140" value="70" step="1">
-        <span style="color: #c0b090;">Позиция капли</span>
-        <button id="randomDropBtn"><i class="fas fa-random"></i> Случайное положение</button>
-      </div>
-      <p style="margin-top:1.2rem; color: #908060;"><i class="fas fa-info-circle"></i> Микрорельеф листа лотоса создаёт угол смачивания более 150°, заставляя воду собираться в идеальные сферы и скатываться, унося загрязнения.</p>
-    </div>
-  </div>
-  
-  <footer>
-    <i class="far fa-copyright"></i> Бионика — мост между биологией и технологиями • 2026.
-Работу выполняли: Яропкин П., Рогов К., Башкирев М., Бочкин Т., Зубакин С.
-  </footer>
-</div>
+                setTimeout(() => {
+                    btn.textContent = '🎁 Нажми, мама';
+                    btn.style.background = 'linear-gradient(135deg, #e57898, #c25479)';
+                }, 2500);
+            });
+        }
 
-<script>
-  (function() {
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panes = document.querySelectorAll('.tab-pane');
+        // Лёгкое увеличение фото по клику (для галереи)
+        function setupGalleryClick() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    if (img) {
+                        const overlay = document.createElement('div');
+                        overlay.style.cssText = `
+                            position: fixed;
+                            top: 0; left: 0;
+                            width: 100%; height: 100%;
+                            background: rgba(0,0,0,0.8);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            z-index: 9999;
+                            cursor: pointer;
+                            backdrop-filter: blur(6px);
+                            -webkit-backdrop-filter: blur(6px);
+                        `;
+                        const bigImg = document.createElement('img');
+                        bigImg.src = img.src;
+                        bigImg.style.cssText = `
+                            max-width: 90%;
+                            max-height: 90%;
+                            border-radius: 24px;
+                            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+                            object-fit: contain;
+                        `;
+                        overlay.appendChild(bigImg);
+                        overlay.addEventListener('click', () => overlay.remove());
+                        document.body.appendChild(overlay);
+                    }
+                });
+            });
+        }
 
-    tabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tabId = btn.getAttribute('data-tab');
-        tabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        panes.forEach(p => p.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-      });
-    });
-
-    const droplet = document.getElementById('droplet');
-    const posSlider = document.getElementById('waterPosX');
-    const randomBtn = document.getElementById('randomDropBtn');
-    const leaf = document.getElementById('lotusLeaf');
-
-    function updateDropletPosition(xValue) {
-      if (!droplet) return;
-      droplet.style.left = xValue + 'px';
-      const yBase = 35 + Math.sin(xValue * 0.2) * 6;
-      droplet.style.top = yBase + 'px';
-    }
-
-    if (posSlider) {
-      posSlider.addEventListener('input', (e) => {
-        updateDropletPosition(parseInt(e.target.value, 10));
-      });
-    }
-
-    if (randomBtn) {
-      randomBtn.addEventListener('click', () => {
-        const randomX = Math.floor(Math.random() * 131) + 10;
-        if (posSlider) posSlider.value = randomX;
-        updateDropletPosition(randomX);
-      });
-    }
-
-    updateDropletPosition(70);
-
-    if (leaf) {
-      leaf.addEventListener('click', (e) => {
-        const rect = leaf.getBoundingClientRect();
-        const relativeX = e.clientX - rect.left;
-        let mappedX = Math.min(140, Math.max(10, relativeX - 16));
-        if (posSlider) posSlider.value = Math.round(mappedX);
-        updateDropletPosition(mappedX);
-      });
-    }
-
-    console.log('🌿 Сайт "Бионика" готов! Добавьте фотографии в папку photos/');
-  })();
-</script>
+        // Инициализация
+        window.addEventListener('DOMContentLoaded', () => {
+            createPetals();
+            setupSurprise();
+            setupGalleryClick();
+        });
+    </script>
 </body>
 </html>
